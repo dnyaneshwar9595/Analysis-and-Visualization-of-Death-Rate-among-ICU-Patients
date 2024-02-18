@@ -1,4 +1,4 @@
-# Analysis-and-Visualization-of-Death-Rate-among-ICU-Patients
+# Insights of the project
 
 ![Figure_1](https://github.com/dnyaneshwar9595/Analysis-and-Visualization-of-Death-Rate-among-ICU-Patients/assets/120622138/7657f00c-72b0-47e4-a7f7-d84b6f7d283f)
 
