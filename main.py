@@ -36,7 +36,7 @@ def main_():
     # Fetch the results
             results = cur.fetchall()
             # print(results)
-            age_death(results)
+            age_deaths(results)
 
         if choice == 2:
             cur.execute("""

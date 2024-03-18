@@ -1,6 +1,6 @@
-from choice import show_menu
+from choice import *
 from functions import *
-from SQL_Project import age_deaths
+
 # Exploratory Data Analysis
 
 #Taking choice Input

@@ -1,9 +1,8 @@
 import numpy as np
-import numpy as np
 import matplotlib.patheffects as path_effects
 import matplotlib.pyplot as plt
 
-def age_death(result):
+def age_deaths(result):
         # Separate the data for plotting
     ages = [record['age'] for record in result]
     deaths = [record['amount_that_died'] for record in result]
