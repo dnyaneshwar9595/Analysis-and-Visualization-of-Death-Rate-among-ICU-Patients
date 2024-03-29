@@ -1,7 +1,6 @@
 from choice import *
 import psycopg2
 import psycopg2.extras
-# from SQL_Project import connection
 from functions import *
 
 def main_():
@@ -27,12 +26,17 @@ def main_():
         if choice == 1:
             
             cur.execute("""
-        SELECT age,
-            COUNT(CASE WHEN hospital_death = '1' THEN 1 END) as amount_that_died,
-            COUNT(CASE WHEN hospital_death = '0' THEN 1 END) as amount_that_survived
-        FROM patient
-        GROUP BY age
-        ORDER BY age ASC; """)
+        SELECT
+        CONCAT(FLOOR(age / 10) * 10, '-', FLOOR(age / 10) * 10 + 9) AS age_range,
+        COUNT(*) AS frequency
+    FROM
+        patient
+    WHERE
+        hospital_death = 1 AND age IS NOT NULL
+    GROUP BY
+        FLOOR(age / 10)
+    ORDER BY
+        FLOOR(age / 10); """)
     # Fetch the results
             results = cur.fetchall()
             # print(results)
@@ -45,7 +49,6 @@ def main_():
         WHERE hospital_death = '1'
         GROUP BY ethnicity;  """)
             rows = cur.fetchall()
-            print(rows)
             ethnicity_deaths(rows)
             
         if choice == 3:
