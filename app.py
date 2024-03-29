@@ -4,17 +4,21 @@ import psycopg2.extras
 from functions import *
 
 def main_():
-    db_params = {
-        'dbname':"Hospital",
-        'user':"postgres",
-        'password':"password",
-        'host':"localhost",
-        'port':"5432"
-    }
-    
-    connection = psycopg2.connect(**db_params)
-    cur= connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
+    try:
+        db_params = {
+            'dbname':"Hospital",
+            'user':"postgres",
+            'password':"password",
+            'host':"localhost",
+            'port':"5432"
+        }
+        
+        connection = psycopg2.connect(**db_params)
+        cur= connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    except:
+        print("Connection failed")
+    else:
+        print("Connected")
 
     while True:
         
