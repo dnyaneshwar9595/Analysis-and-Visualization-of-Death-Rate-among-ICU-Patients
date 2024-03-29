@@ -69,6 +69,40 @@ FROM patient
 WHERE hospital_death = 1;""")
             result = cur.fetchall()
             medical_condition_deaths(result)
+        
+        
+        if choice==4:
+            cur.execute("""
+    SELECT
+    icu_type,
+    ROUND(AVG(CASE WHEN hospital_death = 1 AND pre_icu_los_days IS NOT NULL THEN pre_icu_los_days::numeric END), 2) AS avg_icu_stay_death,
+    ROUND(AVG(CASE WHEN hospital_death = 0 AND pre_icu_los_days IS NOT NULL THEN pre_icu_los_days::numeric END), 2) AS avg_icu_stay_survived
+FROM
+    patient
+GROUP BY
+    icu_type
+ORDER BY
+    icu_type;
+""")
+            rows = cur.fetchall()
+            ICU_type_deaths(rows)
+        
+        
+        
+        if choice == 5:
 
+            cur.execute("""SELECT
+    CONCAT(FLOOR(bmi / 10) * 10, '-', FLOOR(bmi / 10) * 10 + 9) AS bmi_range,
+    COUNT(*) AS frequency
+FROM
+    patient
+WHERE
+    hospital_death = 1 AND bmi IS NOT NULL
+GROUP BY
+    FLOOR(bmi / 10)
+ORDER BY
+    FLOOR(bmi / 10);""")
+            result = cur.fetchall()
+            BMI_deaths(result)
             
 main_()

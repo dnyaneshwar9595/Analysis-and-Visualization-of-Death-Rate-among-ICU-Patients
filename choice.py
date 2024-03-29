@@ -52,5 +52,3 @@ def show_menu():
             print("Invalid input. Please enter a valid integer.")
 
     return choice
-
-show_menu()
